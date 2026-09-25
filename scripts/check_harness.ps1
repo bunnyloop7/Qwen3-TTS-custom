@@ -100,92 +100,14 @@ try {
             $forbiddenPatterns = @(
                 '(?i)(^|/)\.venv(/|$)',
                 '(?i)(^|/)\.env(?!\.example$)($|\.)',
-                '(?i)\.(pem|key|p12|pfx)
-            foreach ($path in $tracked) {
-                foreach ($pattern in $forbiddenPatterns) {
-                    if ($path -match $pattern) {
-                        Add-Failure "Forbidden private/local/model/audio artifact is tracked: $path"
-                        break
-                    }
-                }
-            }
-        }
-    }
-
-    if ($failures.Count -gt 0) {
-        Write-Host '[FAIL] Harness checks failed:'
-        foreach ($failure in $failures) {
-            Write-Host " - $failure"
-        }
-        exit 1
-    }
-
-    Write-Host '[OK] Harness structure and safety checks passed.'
-    exit 0
-}
-finally {
-    Set-Location $originalLocation
-}
-,
-                '(?i)\.(wav|flac|mp3|m4a|safetensors|ckpt|pth|pt)
-            foreach ($path in $tracked) {
-                foreach ($pattern in $forbiddenPatterns) {
-                    if ($path -match $pattern) {
-                        Add-Failure "Forbidden local/model/audio artifact is tracked: $path"
-                        break
-                    }
-                }
-            }
-        }
-    }
-
-    if ($failures.Count -gt 0) {
-        Write-Host '[FAIL] Harness checks failed:'
-        foreach ($failure in $failures) {
-            Write-Host " - $failure"
-        }
-        exit 1
-    }
-
-    Write-Host '[OK] Harness structure and safety checks passed.'
-    exit 0
-}
-finally {
-    Set-Location $originalLocation
-}
-,
-                '(?i)(^|/)voice_clone_prompt_.*\.pt
-            foreach ($path in $tracked) {
-                foreach ($pattern in $forbiddenPatterns) {
-                    if ($path -match $pattern) {
-                        Add-Failure "Forbidden local/model/audio artifact is tracked: $path"
-                        break
-                    }
-                }
-            }
-        }
-    }
-
-    if ($failures.Count -gt 0) {
-        Write-Host '[FAIL] Harness checks failed:'
-        foreach ($failure in $failures) {
-            Write-Host " - $failure"
-        }
-        exit 1
-    }
-
-    Write-Host '[OK] Harness structure and safety checks passed.'
-    exit 0
-}
-finally {
-    Set-Location $originalLocation
-}
-
+                '(?i)\.(pem|key|p12|pfx)$',
+                '(?i)\.(wav|flac|mp3|m4a|safetensors|ckpt|pth|pt)$',
+                '(?i)(^|/)voice_clone_prompt_.*\.pt$'
             )
             foreach ($path in $tracked) {
                 foreach ($pattern in $forbiddenPatterns) {
                     if ($path -match $pattern) {
-                        Add-Failure "Forbidden local/model/audio artifact is tracked: $path"
+                        Add-Failure "Forbidden private/local/model/audio artifact is tracked: $path"
                         break
                     }
                 }
