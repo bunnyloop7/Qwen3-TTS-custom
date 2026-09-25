@@ -22,3 +22,32 @@ wheels/
 .vscode/
 venv/
 env/
+
+# Local/private runtime assets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Personal/reference/generated audio
+*.wav
+*.flac
+*.mp3
+*.m4a
+reference_audio/
+voice_refs/
+generated_audio/
+outputs/
+
+# Model and reusable voice-clone artifacts
+*.safetensors
+*.ckpt
+*.pth
+*.pt
+voice_clone_prompt_*.pt
+models/
+checkpoints/
+saved_voice_prompts/
