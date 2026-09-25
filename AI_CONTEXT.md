@@ -15,19 +15,11 @@ Harness 구조 도입 직전 원격 기준으로 사용자 source code 수정은
 - 공식 Gradio CLI는 FlashAttention 사용 여부를 선택할 수 있고 `--no-flash-attn` 경로를 제공한다.
 - 공식 Base-model UI에는 voice clone prompt 생성/저장과 저장 prompt 재로드 후 합성 경로가 있다.
 
-### User-validated local baseline
+### Local validation policy
 
-아래는 2026-09-09에 사용자가 직접 확인한 로컬 실행 기준이며 upstream 지원 선언이나 영구 성능 보장이 아니다. 환경 또는 성능 판단이 필요한 작업에서는 다시 측정한다.
+개별 사용자의 장비 모델, OS/런타임 세부 버전, VRAM/RAM 관측치, latency, 개인 음성 기반 생성 결과처럼 환경을 지문화할 수 있는 실행 기록은 공개 저장소의 정본으로 고정하지 않는다.
 
-- Python 3.14.6
-- editable `qwen-tts` 0.1.1
-- PyTorch 2.13.0+cu126
-- RTX 3070에서 CUDA 인식 성공
-- FlashAttention 미설치, `--no-flash-attn`으로 Gradio Web UI 실행 성공
-- Qwen3-TTS-12Hz-0.6B-Base 로컬 사용 성공
-- 한국어 voice clone 실제 생성 성공
-- 일본어 생성 가능, 억양은 추가 평가 필요
-- 짧은 문장 생성 약 26초, VRAM 약 2.85GB 관측
+실행 가능 여부나 성능 판단이 필요한 작업에서는 해당 로컬 환경에서 다시 측정하고, 저장소에는 재현에 필요한 비민감 계약과 일반화된 검증 기준만 남긴다.
 
 모델 가중치, 생성 WAV, 참조 음성, saved voice prompt는 local-only 자산이며 저장소 상태가 아니다.
 
